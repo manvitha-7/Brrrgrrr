@@ -56,6 +56,12 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  assets:
+    - assets/images/big-chicken-cheese-burger-transparent-background_670625-142.png
+    - assets/images/png-transparent-burger.png
+    - assets/images/png-transparent-hamburger-veggie-burger-take-out-fast-food-kebab-delicious-beef-burger-burger-with-lettuce-tomato-and-cheese-food-beef-recipe.png
+    - assets/images/sandwich-hamburger-transparent-background_670625-13.png
+
 
   # To add assets to your application, add an assets section, like this:
   # assets:
