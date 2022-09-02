@@ -9,31 +9,45 @@ class CreateYourOwnBurger extends StatelessWidget {
         Text(ingredient),
         Row(
           children: [
+            SizedBox(
+              width: 10,
+            ),
             Container(
-              width: 20,
+              width: 30,
+              height: 30,
               child: ElevatedButton(
-                child: const Text(
-                  '-',
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
                 style: ElevatedButton.styleFrom(
                     primary: Colors.red,
                     //padding: const EdgeInsets.only(
                     // left: 21,right: 21,top:21,bottom: 21),
                     textStyle: const TextStyle(fontSize: 30)),
                 onPressed: () {},
-              ),
-            ),
-            Text(
-              '1',
-              style: TextStyle(
-                color: Colors.white,
+                child: Center(
+                  child: Text(
+                    '-',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 30,
+                    ),
+                  ),
+                ),
               ),
             ),
             Container(
-              width: 20,
+              width: 30,
+              height: 30,
+              child: Center(
+                child: Text(
+                  '1',
+                  style: TextStyle(
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              width: 30,
+              height: 30,
               child: ElevatedButton(
                 child: const Text(
                   '+',
@@ -48,6 +62,9 @@ class CreateYourOwnBurger extends StatelessWidget {
                     textStyle: const TextStyle(fontSize: 30)),
                 onPressed: (() {}),
               ),
+            ),
+            SizedBox(
+              width: 10,
             ),
           ],
         )
@@ -93,6 +110,15 @@ class CreateYourOwnBurger extends StatelessWidget {
                 )
               ],
             ),
+            Row(
+              children: [
+                Ing("Cheese"),
+                Ing("Tomatoes"),
+                Ing("Onions"),
+                Ing("Patty"),
+                Ing("Lettuce"),
+              ],
+            )
           ]),
         ));
   }
