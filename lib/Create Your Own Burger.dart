@@ -130,14 +130,19 @@ class CreateYourOwnBurger extends StatelessWidget {
                     )
                   ],
                 ),
-                Column(
-                  //mainAxisAlignment: MainAxisAlignment.center,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Ing("Cheese"),
-                    Ing("Tomatoes"),
-                    Ing("Onions"),
-                    Ing("Patty"),
-                    Ing("Lettuce"),
+                    Column(
+                      //mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Ing("Cheese"),
+                        Ing("Tomatoes"),
+                        Ing("Onions"),
+                        Ing("Patty"),
+                        Ing("Lettuce"),
+                      ],
+                    ),
                   ],
                 ),
               ]),
