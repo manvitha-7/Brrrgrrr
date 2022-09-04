@@ -16,60 +16,62 @@ class MainScreen extends StatelessWidget {
         ],
       ),
       body: Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
           child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SizedBox(
-            height: 300,
-          ),
-          Container(
-            width: 400,
-            child: ElevatedButton(
-              child: const Text(
-                'Create Your Own Burger',
-                style: TextStyle(
-                  color: Colors.white,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 300,
+              ),
+              Container(
+                width: 400,
+                child: ElevatedButton(
+                  child: const Text(
+                    'Create Your Own Burger',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                      primary: Colors.amber,
+                      padding: const EdgeInsets.only(
+                          left: 21, right: 21, top: 21, bottom: 21),
+                      textStyle: const TextStyle(fontSize: 30)),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => CreateYourOwnBurger()),
+                    );
+                  },
                 ),
               ),
-              style: ElevatedButton.styleFrom(
-                  primary: Colors.amber,
-                  padding: const EdgeInsets.only(
-                      left: 21, right: 21, top: 21, bottom: 21),
-                  textStyle: const TextStyle(fontSize: 30)),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => CreateYourOwnBurger()),
-                );
-              },
-            ),
-          ),
-          SizedBox(height: 30),
-          Container(
-            width: 400,
-            child: ElevatedButton(
-              child: const Text(
-                'Choose A Burger',
-                style: TextStyle(
-                  color: Colors.white,
+              SizedBox(height: 30),
+              Container(
+                width: 400,
+                child: ElevatedButton(
+                  child: const Text(
+                    'Choose A Burger',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                      primary: Colors.red,
+                      padding: const EdgeInsets.only(
+                          left: 21, right: 21, top: 21, bottom: 21),
+                      textStyle: const TextStyle(fontSize: 30)),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ChooseABurger()),
+                    );
+                  },
                 ),
               ),
-              style: ElevatedButton.styleFrom(
-                  primary: Colors.red,
-                  padding: const EdgeInsets.only(
-                      left: 21, right: 21, top: 21, bottom: 21),
-                  textStyle: const TextStyle(fontSize: 30)),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ChooseABurger()),
-                );
-              },
-            ),
-          ),
-        ],
-      )),
+            ],
+          )),
     );
   }
 }
