@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'MainScreen.dart';
+import 'models/ChooseYourOwnBurgerModel.dart';
 
 void main() {
-  runApp(const MyApp());
+  final info = Info();
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => info,
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
