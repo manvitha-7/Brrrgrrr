@@ -19,6 +19,7 @@ class _CreateYourOwnBurgerState extends State<CreateYourOwnBurger> {
   int lettuce = 1;
   int tomato = 1;
   int onion = 1;
+  int counter = 0;
 
   void add(int ingredient) {
     setState(() {
@@ -38,25 +39,23 @@ class _CreateYourOwnBurgerState extends State<CreateYourOwnBurger> {
 
   void update(int ingredient) {
     setState(() {
-      if (ingredient == 1) {
-        if (patty > 1) {
-          patty--;
-        } else if (ingredient == 2) {
-          if (cheese > 1) {
-            cheese--;
-          }
-        } else if (ingredient == 3) {
-          if (lettuce > 1) {
-            lettuce--;
-          }
-        } else if (ingredient == 4) {
-          if (tomato > 1) {
-            tomato--;
-          }
-        } else if (ingredient == 5) {
-          if (onion > 1) {
-            onion--;
-          }
+      if (patty > 1) {
+        patty--;
+      } else if (ingredient == 2) {
+        if (cheese > 1) {
+          cheese--;
+        }
+      } else if (ingredient == 3) {
+        if (lettuce > 1) {
+          lettuce--;
+        }
+      } else if (ingredient == 4) {
+        if (tomato > 1) {
+          tomato--;
+        }
+      } else if (ingredient == 5) {
+        if (onion > 1) {
+          onion--;
         }
       }
     });
@@ -77,7 +76,7 @@ class _CreateYourOwnBurgerState extends State<CreateYourOwnBurger> {
     return 0;
   }
 
-  Widget Ing(String ingredient, int value) {
+  Widget Ing(String ingredient, int value, Info informa) {
     return Container(
         //alignment: Alignment.centerLeft,
         child: Column(
@@ -107,6 +106,12 @@ class _CreateYourOwnBurgerState extends State<CreateYourOwnBurger> {
                     shadowColor: Colors.white),
                 onPressed: () {
                   update(value);
+                  if (counter > 0) {
+                    informa.remove(10);
+                    setState(() {
+                      counter--;
+                    });
+                  }
                 },
                 child: Center(
                   child: Text(
@@ -145,6 +150,11 @@ class _CreateYourOwnBurgerState extends State<CreateYourOwnBurger> {
                       shadowColor: Colors.white),
                   onPressed: (() {
                     add(value);
+                    informa.add(10);
+                    setState(() {
+                      counter++;
+                    });
+                    print(counter);
                   }),
                   child: Text(
                     '+',
@@ -166,6 +176,8 @@ class _CreateYourOwnBurgerState extends State<CreateYourOwnBurger> {
   @override
   Widget build(BuildContext context) {
     final info = Provider.of<Info>(context);
+
+    final informa = Provider.of<Info>(context, listen: false);
 
     return Scaffold(
         extendBodyBehindAppBar: true,
@@ -218,11 +230,11 @@ class _CreateYourOwnBurgerState extends State<CreateYourOwnBurger> {
                             fontWeight: FontWeight.bold),
                       ),
                       SizedBox(height: 40),
-                      Ing('Patty', 1),
-                      Ing('Cheese', 2),
-                      Ing('Lettuce', 3),
-                      Ing('Tomato', 4),
-                      Ing('Onion', 5),
+                      Ing('Patty', 1, informa),
+                      Ing('Cheese', 2, informa),
+                      Ing('Lettuce', 3, informa),
+                      Ing('Tomato', 4, informa),
+                      Ing('Onion', 5, informa),
                       SizedBox(height: 40),
                       Container(
                         width: 300,

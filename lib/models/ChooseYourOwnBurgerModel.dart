@@ -14,6 +14,16 @@ class Info extends ChangeNotifier {
     notifyListeners();
   }
 
+  void add(int amounti) {
+    price = price + amounti;
+    notifyListeners();
+  }
+
+  void remove(int amounti) {
+    price = price - amounti;
+    notifyListeners();
+  }
+
   String returnImage() {
     return image;
   }
