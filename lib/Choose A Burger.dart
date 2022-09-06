@@ -17,6 +17,7 @@ class _ChooseABurgerState extends State<ChooseABurger> {
   @override
   Widget build(BuildContext context) {
     final info = Provider.of<Info>(context, listen: false);
+    print(MediaQuery.of(context).size.width);
     return Scaffold(
         backgroundColor: Color.fromARGB(255, 163, 23, 32),
         extendBodyBehindAppBar: false,
@@ -24,7 +25,7 @@ class _ChooseABurgerState extends State<ChooseABurger> {
             backgroundColor: Colors.transparent,
             elevation: 0,
             title: Text(
-              'Brrgrr',
+              'Brrrgrrr',
               style: GoogleFonts.dancingScript(
                   color: Colors.white,
                   fontSize: 24,

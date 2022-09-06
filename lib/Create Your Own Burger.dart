@@ -22,51 +22,93 @@ class _CreateYourOwnBurgerState extends State<CreateYourOwnBurger> {
 
   int counter = 0;
 
-  void add(int ingredient) {
+  void add(int ingredient, Info informa) {
     setState(() {
       if (ingredient == 1) {
         if (patty < 10) {
           patty++;
+          informa.add(10);
+          setState(() {
+            counter++;
+          });
         }
       } else if (ingredient == 2) {
         if (cheese < 10) {
           cheese++;
+          informa.add(10);
+          setState(() {
+            counter++;
+          });
         }
       } else if (ingredient == 3) {
         if (lettuce < 10) {
           lettuce++;
+          informa.add(10);
+          setState(() {
+            counter++;
+          });
         }
       } else if (ingredient == 4) {
         if (tomato < 10) {
           tomato++;
+          informa.add(10);
+          setState(() {
+            counter++;
+          });
         }
       } else if (ingredient == 5) {
         if (onion < 10) {
           onion++;
+          informa.add(10);
+          setState(() {
+            counter++;
+          });
         }
       }
     });
   }
 
-  void update(int ingredient) {
+  void update(int ingredient, Info informa) {
     setState(() {
-      if (patty > 1) {
-        patty--;
+      if (ingredient == 1) {
+        if (patty > 1) {
+          patty--;
+          informa.remove(10);
+          setState(() {
+            counter--;
+          });
+        }
       } else if (ingredient == 2) {
         if (cheese > 1) {
           cheese--;
+          informa.remove(10);
+          setState(() {
+            counter--;
+          });
         }
       } else if (ingredient == 3) {
         if (lettuce > 1) {
           lettuce--;
+          informa.remove(10);
+          setState(() {
+            counter--;
+          });
         }
       } else if (ingredient == 4) {
         if (tomato > 1) {
           tomato--;
+          informa.remove(10);
+          setState(() {
+            counter--;
+          });
         }
       } else if (ingredient == 5) {
         if (onion > 1) {
           onion--;
+          informa.remove(10);
+          setState(() {
+            counter--;
+          });
         }
       }
     });
@@ -96,7 +138,9 @@ class _CreateYourOwnBurgerState extends State<CreateYourOwnBurger> {
         Text(
           ingredient,
           style: GoogleFonts.dancingScript(
-              color: Colors.white, fontSize: 49, fontWeight: FontWeight.bold),
+              color: Colors.white,
+              fontSize: MediaQuery.of(context).size.width < 1600 ? 30 : 49,
+              fontWeight: FontWeight.bold),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -116,13 +160,7 @@ class _CreateYourOwnBurgerState extends State<CreateYourOwnBurger> {
                     elevation: 4,
                     shadowColor: Colors.white),
                 onPressed: () {
-                  update(value);
-                  if (counter > 0) {
-                    informa.remove(10);
-                    setState(() {
-                      counter--;
-                    });
-                  }
+                  update(value, informa);
                 },
                 child: Center(
                   child: Text(
@@ -160,14 +198,7 @@ class _CreateYourOwnBurgerState extends State<CreateYourOwnBurger> {
                       elevation: 4,
                       shadowColor: Colors.white),
                   onPressed: (() {
-                    add(value);
-                    if (counter < 9) {
-                      informa.add(10);
-                      setState(() {
-                        counter++;
-                      });
-                      print(counter);
-                    }
+                    add(value, informa);
                   }),
                   child: Text(
                     '+',
@@ -198,6 +229,7 @@ class _CreateYourOwnBurgerState extends State<CreateYourOwnBurger> {
           backgroundColor: Colors.transparent,
           elevation: 0,
         ),
+        backgroundColor: Color.fromARGB(255, 163, 23, 32),
         body: SingleChildScrollView(
           child: ResponsiveGridRow(
             children: [
@@ -205,76 +237,86 @@ class _CreateYourOwnBurgerState extends State<CreateYourOwnBurger> {
                 xs: 12,
                 md: 6,
                 lg: 8,
-                child: Container(
-                  height: MediaQuery.of(context).size.height,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage(info.returnImage()),
-                      fit: BoxFit.cover,
+                child: SingleChildScrollView(
+                  child: Container(
+                    height: MediaQuery.of(context).size.height,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(info.returnImage()),
+                        fit: BoxFit.cover,
+                      ),
                     ),
+                    child: SizedBox(),
                   ),
-                  child: SizedBox(),
                 ),
               ),
               ResponsiveGridCol(
                 xs: 12,
                 md: 6,
                 lg: 4,
-                child: Container(
-                  height: MediaQuery.of(context).size.height,
-                  width: MediaQuery.of(context).size.width,
-                  color: Color.fromARGB(255, 163, 23, 32),
-                  child: Column(
-                    children: [
-                      SizedBox(height: 70),
-                      Text(
-                        info.returnName(),
-                        style: GoogleFonts.dancingScript(
-                            color: Colors.white,
-                            fontSize: 91,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        '${info.returnPrice()}',
-                        style: GoogleFonts.dancingScript(
-                            color: Colors.white,
-                            fontSize: 79,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(height: 40),
-                      Ing('Patty', 1, informa),
-                      Ing('Cheese', 2, informa),
-                      Ing('Lettuce', 3, informa),
-                      Ing('Tomato', 4, informa),
-                      Ing('Onion', 5, informa),
-                      SizedBox(height: 40),
-                      Container(
-                        width: 300,
-                        height: 70,
-                        child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                primary: Colors.white,
-                                padding: const EdgeInsets.only(
-                                    left: 0, right: 0, top: 0, bottom: 0),
-                                textStyle: const TextStyle(fontSize: 30),
-                                elevation: 4,
-                                shadowColor: Colors.white),
-                            onPressed: (() {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => Success()));
-                            }),
-                            child: Text(
-                              'Place Order',
-                              style: GoogleFonts.dancingScript(
-                                  color: Color.fromARGB(255, 163, 23, 32),
-                                  fontSize: 40,
-                                  fontWeight: FontWeight.bold),
-                            )),
-                      ),
-                    ],
+                child: SingleChildScrollView(
+                  child: Container(
+                    color: Color.fromARGB(255, 163, 23, 32),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: MediaQuery.of(context).size.width < 1600
+                              ? 30
+                              : 70,
+                        ),
+                        Text(
+                          info.returnName(),
+                          style: GoogleFonts.dancingScript(
+                              color: Colors.white,
+                              fontSize: MediaQuery.of(context).size.width < 1600
+                                  ? 70
+                                  : 91,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          '${info.returnPrice()}',
+                          style: GoogleFonts.dancingScript(
+                              color: Colors.white,
+                              fontSize: MediaQuery.of(context).size.width < 1600
+                                  ? 59
+                                  : 70,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(height: 40),
+                        Ing('Patty', 1, informa),
+                        Ing('Cheese', 2, informa),
+                        Ing('Lettuce', 3, informa),
+                        Ing('Tomato', 4, informa),
+                        Ing('Onion', 5, informa),
+                        SizedBox(height: 40),
+                        Container(
+                          width: 300,
+                          height: 70,
+                          child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  primary: Colors.white,
+                                  padding: const EdgeInsets.only(
+                                      left: 0, right: 0, top: 0, bottom: 0),
+                                  textStyle: const TextStyle(fontSize: 30),
+                                  elevation: 4,
+                                  shadowColor: Colors.white),
+                              onPressed: (() {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Success()));
+                              }),
+                              child: Text(
+                                'Place Order',
+                                style: GoogleFonts.dancingScript(
+                                    color: Color.fromARGB(255, 163, 23, 32),
+                                    fontSize: 40,
+                                    fontWeight: FontWeight.bold),
+                              )),
+                        ),
+                        SizedBox(height: 50),
+                      ],
+                    ),
                   ),
                 ),
               ),

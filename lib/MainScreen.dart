@@ -1,21 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'Choose A Burger.dart';
 import 'Create Your Own Burger.dart';
+import 'models/ChooseYourOwnBurgerModel.dart';
 
-class MainScreen extends StatelessWidget {
+class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
 
   @override
+  State<MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
+  @override
   Widget build(BuildContext context) {
+    final informa = Provider.of<Info>(context, listen: false);
+
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        leading: IconButton(icon: const Icon(Icons.menu), onPressed: () {}),
-        title: const Text("Brrrgrr"),
-        backgroundColor: Colors.purple,
-        actions: <Widget>[
-          IconButton(icon: const Icon(Icons.search), onPressed: () {}),
-        ],
-      ),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          title: Text(
+            'Brrrgrrr',
+            style: GoogleFonts.dancingScript(
+                color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+          )),
       body: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
@@ -29,12 +40,12 @@ class MainScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(
-                height: 300,
-              ),
+              // SizedBox(
+              //   height: 100,
+              // ),
               Container(
                 decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 70, 4, 14),
+                    color: Color.fromARGB(255, 163, 23, 32),
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: [
                       BoxShadow(
@@ -53,6 +64,26 @@ class MainScreen extends StatelessWidget {
                 width: 400,
                 height: 70,
                 child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(11.0),
+                      ),
+//primary: Color.fromARGB(255, 70, 4, 14),
+                      primary: Color.fromARGB(255, 163, 23, 32),
+                      shadowColor: Color.fromARGB(255, 249, 246, 246),
+                      elevation: 19,
+                      padding: const EdgeInsets.only(
+                          left: 21, right: 21, top: 21, bottom: 21),
+                      textStyle: const TextStyle(fontSize: 30)),
+                  onPressed: () {
+                    informa.set(
+                        'assets/images/CustomBurger.jpeg', 'Custom Burger', 90);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => CreateYourOwnBurger()),
+                    );
+                  },
                   child: const Text(
                     'Create Your Own Burger',
                     style: TextStyle(
@@ -68,28 +99,13 @@ class MainScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  style: ElevatedButton.styleFrom(
-//primary: Color.fromARGB(255, 70, 4, 14),
-                      primary: Color.fromARGB(255, 70, 4, 14),
-                      shadowColor: Color.fromARGB(255, 249, 246, 246),
-                      elevation: 20,
-                      padding: const EdgeInsets.only(
-                          left: 21, right: 21, top: 21, bottom: 21),
-                      textStyle: const TextStyle(fontSize: 30)),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => CreateYourOwnBurger()),
-                    );
-                  },
                 ),
               ),
               SizedBox(height: 40),
               Container(
                 decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 70, 4, 14),
-                    borderRadius: BorderRadius.circular(15),
+                    color: Color.fromARGB(255, 163, 23, 32),
+                    borderRadius: BorderRadius.circular(30),
                     boxShadow: [
                       BoxShadow(
                         color: Color.fromARGB(255, 232, 229, 229),
@@ -107,6 +123,23 @@ class MainScreen extends StatelessWidget {
                 width: 400,
                 height: 70,
                 child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(11.0),
+                      ),
+                      primary: Color.fromARGB(255, 163, 23, 32),
+                      //primary: Colors.transparent,
+                      shadowColor: Color.fromARGB(255, 11, 11, 11),
+                      elevation: 19,
+                      padding: const EdgeInsets.only(
+                          left: 21, right: 21, top: 21, bottom: 21),
+                      textStyle: const TextStyle(fontSize: 30)),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ChooseABurger()),
+                    );
+                  },
                   child: const Text(
                     'Choose A Burger',
                     style: TextStyle(
@@ -122,20 +155,6 @@ class MainScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  style: ElevatedButton.styleFrom(
-                      primary: Color.fromARGB(255, 70, 4, 14),
-                      //primary: Colors.transparent,
-                      shadowColor: Color.fromARGB(255, 11, 11, 11),
-                      elevation: 20,
-                      padding: const EdgeInsets.only(
-                          left: 21, right: 21, top: 21, bottom: 21),
-                      textStyle: const TextStyle(fontSize: 30)),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => ChooseABurger()),
-                    );
-                  },
                 ),
               ),
             ],
