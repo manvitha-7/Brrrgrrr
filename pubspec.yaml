@@ -37,6 +37,7 @@ dependencies:
   responsive_grid: ^2.1.0
   google_fonts: ^3.0.1
   provider: ^6.0.3
+  responsive_grid_list: ^1.2.5
 
 dev_dependencies:
   flutter_test:
@@ -70,6 +71,27 @@ flutter:
     - assets/images/CheeseBurger.jpg
     - assets/images/DoubleCheeseBurger.jpg
     - assets/images/ChickenBurger.jpg 
+    - assets/images/EggBurger.jpg 
+    - assets/images/FishBurger.jpeg 
+    - assets/images/KoreanBurger.jpg 
+    - assets/images/LambBurger.jpeg 
+    - assets/images/PizzaBurger.jpg 
+    - assets/images/TeriyakiBurger.jpeg 
+    - assets/images/TurkeyBurger.jpg 
+    - assets/images/ZingerBurger.jpg 
+    - assets/images/IceCreamBurger.jpg 
+    - assets/images/BlackBurger.jpeg 
+    - assets/images/Classic-Burger.jpg 
+    - assets/images/GrilledBurger.jpeg 
+    - assets/images/HealthyBurger.jpg 
+    - assets/images/TacoBurger.jpg 
+    - assets/images/TwisperBurger.jpg 
+
+
+
+
+
+
 
   # To add assets to your application, add an assets section, like this:
   # assets:

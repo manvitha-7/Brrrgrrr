@@ -19,20 +19,31 @@ class _CreateYourOwnBurgerState extends State<CreateYourOwnBurger> {
   int lettuce = 1;
   int tomato = 1;
   int onion = 1;
+
   int counter = 0;
 
   void add(int ingredient) {
     setState(() {
       if (ingredient == 1) {
-        patty++;
+        if (patty < 10) {
+          patty++;
+        }
       } else if (ingredient == 2) {
-        cheese++;
+        if (cheese < 10) {
+          cheese++;
+        }
       } else if (ingredient == 3) {
-        lettuce++;
+        if (lettuce < 10) {
+          lettuce++;
+        }
       } else if (ingredient == 4) {
-        tomato++;
+        if (tomato < 10) {
+          tomato++;
+        }
       } else if (ingredient == 5) {
-        onion++;
+        if (onion < 10) {
+          onion++;
+        }
       }
     });
   }
@@ -94,8 +105,8 @@ class _CreateYourOwnBurgerState extends State<CreateYourOwnBurger> {
               width: 10,
             ),
             Container(
-              width: 30,
-              height: 30,
+              width: 40,
+              height: 40,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     primary: Colors.white,
@@ -138,8 +149,8 @@ class _CreateYourOwnBurgerState extends State<CreateYourOwnBurger> {
               ),
             ),
             Container(
-              width: 30,
-              height: 30,
+              width: 40,
+              height: 40,
               child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                       primary: Colors.white,
@@ -150,11 +161,13 @@ class _CreateYourOwnBurgerState extends State<CreateYourOwnBurger> {
                       shadowColor: Colors.white),
                   onPressed: (() {
                     add(value);
-                    informa.add(10);
-                    setState(() {
-                      counter++;
-                    });
-                    print(counter);
+                    if (counter < 9) {
+                      informa.add(10);
+                      setState(() {
+                        counter++;
+                      });
+                      print(counter);
+                    }
                   }),
                   child: Text(
                     '+',
