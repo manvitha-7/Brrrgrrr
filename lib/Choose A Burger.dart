@@ -25,6 +25,7 @@ class ChooseABurger extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: Text("Brrrgrr"),
+          backgroundColor: Colors.purple,
         ),
         body: Container(
           child: Row(
