@@ -318,7 +318,7 @@ class _CreateYourOwnBurgerState extends State<CreateYourOwnBurger> {
                                 var response = await networkHandler.post(
                                     "/post", order.toJson());
 
-                                print(response.body);
+                                print(response.data);
 
                                 if (response.statusCode == 200 ||
                                     response.statusCode == 201) {
