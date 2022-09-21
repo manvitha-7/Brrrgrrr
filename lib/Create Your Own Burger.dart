@@ -4,7 +4,9 @@ import 'package:provider/provider.dart';
 import 'package:responsive_grid/responsive_grid.dart';
 import 'package:test/Success.dart';
 
+import 'NetworkHandler.dart';
 import 'models/ChooseYourOwnBurgerModel.dart';
+import 'models/OrderModel.dart';
 
 class CreateYourOwnBurger extends StatefulWidget {
   const CreateYourOwnBurger({Key? key}) : super(key: key);
@@ -14,6 +16,9 @@ class CreateYourOwnBurger extends StatefulWidget {
 }
 
 class _CreateYourOwnBurgerState extends State<CreateYourOwnBurger> {
+  NetworkHandler networkHandler = NetworkHandler();
+  OrderModel order = OrderModel();
+
   int patty = 1;
   int cheese = 1;
   int lettuce = 1;
@@ -300,11 +305,35 @@ class _CreateYourOwnBurgerState extends State<CreateYourOwnBurger> {
                                   textStyle: const TextStyle(fontSize: 30),
                                   elevation: 4,
                                   shadowColor: Colors.white),
-                              onPressed: (() {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => Success()));
+                              onPressed: (() async {
+                                OrderModel order = OrderModel(
+                                    name: info.returnName(),
+                                    price: info.returnPrice(),
+                                    patty: patty,
+                                    cheese: cheese,
+                                    lettuce: lettuce,
+                                    tomato: tomato,
+                                    onion: onion);
+
+                                var response = await networkHandler.post(
+                                    "/post", order.toJson());
+
+                                print(response.body);
+
+                                if (response.statusCode == 200 ||
+                                    response.statusCode == 201) {
+                                  // Navigator.pushAndRemoveUntil(
+                                  //     context,
+                                  //     MaterialPageRoute(builder: (context) => HomeScreen()),
+                                  //     (route) => false);
+
+                                  // Navigator.pop(context);
+
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Success()));
+                                }
                               }),
                               child: Text(
                                 'Place Order',
