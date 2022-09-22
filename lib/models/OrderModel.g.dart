@@ -25,6 +25,5 @@ Map<String, dynamic> _$OrderModelToJson(OrderModel instance) =>
       'cheese': instance.cheese,
       'lettuce': instance.lettuce,
       'tomato': instance.tomato,
-      'onion': instance.onion,
-      '_id': instance.id,
+      'onion': instance.onion
     };

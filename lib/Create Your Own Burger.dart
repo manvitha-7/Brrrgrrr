@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -318,7 +320,12 @@ class _CreateYourOwnBurgerState extends State<CreateYourOwnBurger> {
                                 var response = await networkHandler.post(
                                     "/post", order.toJson());
 
-                                print(response.data);
+                                print(response.data.toString());
+
+                                var responsed = response.data
+                                    .toString()
+                                    .substring(
+                                        7, response.data.toString().length - 1);
 
                                 if (response.statusCode == 200 ||
                                     response.statusCode == 201) {
@@ -332,7 +339,9 @@ class _CreateYourOwnBurgerState extends State<CreateYourOwnBurger> {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => Success()));
+                                          builder: (context) => Success(
+                                                responsedata: responsed,
+                                              )));
                                 }
                               }),
                               child: Text(
